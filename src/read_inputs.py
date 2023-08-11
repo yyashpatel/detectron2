@@ -15,7 +15,7 @@ def parseArgs():
 
     parser.add_argument('--input_data',  type=str,  default=False,  help='')
 
-    parser.add_argument( "--output",type=str, help="A file or directory to save output visualizations.",)
+    parser.add_argument( "--output_path",type=str, help="A file or directory to save output visualizations.",)
 
     parser.add_argument("--confidence-threshold", type=float, default=0.5,help="Minimum score for instance predictions to be shown",)
 

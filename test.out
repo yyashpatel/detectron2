@@ -1,7 +1,6 @@
 Parsing arguments ...
-Creating folder /scratch/yp2285/ws_nerf/detectron2/results ...
-[08/10 21:16:20 detectron2]: Rank of current process: 0. World size: 1
-[08/10 21:16:22 detectron2]: Environment info:
+[08/11 12:50:13 detectron2]: Rank of current process: 0. World size: 1
+[08/11 12:50:15 detectron2]: Environment info:
 -------------------------------  -----------------------------------------------------------------------
 sys.platform                     linux
 Python                           3.11.4 (main, Jul  5 2023, 13:45:01) [GCC 11.2.0]
@@ -14,7 +13,7 @@ PyTorch                          2.0.1+cu117 @/ext3/miniconda3/lib/python3.11/si
 PyTorch debug build              False
 torch._C._GLIBCXX_USE_CXX11_ABI  False
 GPU available                    Yes
-GPU 0                            Tesla V100-PCIE-32GB (arch=7.0)
+GPU 0                            NVIDIA A100-SXM4-80GB (arch=8.0)
 Driver version                   535.54.03
 CUDA_HOME                        /usr/local/cuda
 Pillow                           10.0.0
@@ -39,21 +38,21 @@ PyTorch built with:
   - Magma 2.6.1
   - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.7, CUDNN_VERSION=8.5.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wunused-local-typedefs -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_DISABLE_GPU_ASSERTS=ON, TORCH_VERSION=2.0.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
 
-[08/10 21:16:22 detectron2]: Command line arguments: Namespace(config_file='/scratch/yp2285/ws_nerf/detectron2/projects/MViTv2/configs/cascade_mask_rcnn_mvitv2_b_in21k_3x.py', input_data='images', output=None, confidence_threshold=0.5, score_threshold=0.5, opts=['train.init_checkpoint=/scratch/yp2285/ws_nerf/detectron2/checkpoints/model_final_be5168.pkl'], resume=False, eval_only=True, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:65094')
-[08/10 21:16:22 detectron2]: Contents of args.config_file=/scratch/yp2285/ws_nerf/detectron2/projects/MViTv2/configs/cascade_mask_rcnn_mvitv2_b_in21k_3x.py:
+[08/11 12:50:15 detectron2]: Command line arguments: Namespace(config_file='/scratch/yp2285/ws_nerf/detectron2/projects/MViTv2/configs/cascade_mask_rcnn_mvitv2_b_in21k_3x.py', input_data='images', output_path='results', confidence_threshold=0.5, score_threshold=0.5, opts=['train.init_checkpoint=/scratch/yp2285/ws_nerf/detectron2/checkpoints/model_final_be5168.pkl'], resume=False, eval_only=True, num_gpus=1, num_machines=1, machine_rank=0, dist_url='tcp://127.0.0.1:65094')
+[08/11 12:50:15 detectron2]: Contents of args.config_file=/scratch/yp2285/ws_nerf/detectron2/projects/MViTv2/configs/cascade_mask_rcnn_mvitv2_b_in21k_3x.py:
 from .cascade_mask_rcnn_mvitv2_b_3x import model, dataloader, optimizer, lr_multiplier, train
 
 train.init_checkpoint = "detectron2://ImageNetPretrained/mvitv2/MViTv2_B_in21k.pyth"
 
-WARNING [08/10 21:16:22 d2.config.lazy]: The config contains objects that cannot serialize to a valid yaml. ./output/config.yaml is human-readable but cannot be loaded.
-WARNING [08/10 21:16:22 d2.config.lazy]: Config is saved using cloudpickle at ./output/config.yaml.pkl.
-[08/10 21:16:22 detectron2]: Full config saved to ./output/config.yaml
-[08/10 21:16:22 d2.utils.env]: Using a generated random seed 23153913
-[08/10 21:16:30 d2.checkpoint.detection_checkpoint]: [DetectionCheckpointer] Loading from /scratch/yp2285/ws_nerf/detectron2/checkpoints/model_final_be5168.pkl ...
-[08/10 21:16:30 fvcore.common.checkpoint]: [Checkpointer] Loading from /scratch/yp2285/ws_nerf/detectron2/checkpoints/model_final_be5168.pkl ...
-[08/10 21:16:31 fvcore.common.checkpoint]: Reading a file from 'Detectron2 ViTDet Model Zoo'
+WARNING [08/11 12:50:15 d2.config.lazy]: The config contains objects that cannot serialize to a valid yaml. ./output/config.yaml is human-readable but cannot be loaded.
+WARNING [08/11 12:50:15 d2.config.lazy]: Config is saved using cloudpickle at ./output/config.yaml.pkl.
+[08/11 12:50:15 detectron2]: Full config saved to ./output/config.yaml
+[08/11 12:50:15 d2.utils.env]: Using a generated random seed 18115454
+[08/11 12:50:21 d2.checkpoint.detection_checkpoint]: [DetectionCheckpointer] Loading from /scratch/yp2285/ws_nerf/detectron2/checkpoints/model_final_be5168.pkl ...
+[08/11 12:50:21 fvcore.common.checkpoint]: [Checkpointer] Loading from /scratch/yp2285/ws_nerf/detectron2/checkpoints/model_final_be5168.pkl ...
+[08/11 12:50:22 fvcore.common.checkpoint]: Reading a file from 'Detectron2 ViTDet Model Zoo'
 Image:   0%|          | 0/1 [00:00<?, ?it/s]/ext3/miniconda3/lib/python3.11/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3483.)
   return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
-Image: 100%|██████████| 1/1 [00:11<00:00, 11.92s/it]Image: 100%|██████████| 1/1 [00:11<00:00, 11.92s/it]
+Image: 100%|██████████| 1/1 [00:09<00:00,  9.33s/it]Image: 100%|██████████| 1/1 [00:09<00:00,  9.33s/it]
 image after transform:  (800, 1067, 3)
-cost: 9.214428424835205, fps: 0.10852545094438502
+cost: 6.567824125289917, fps: 0.152257426649021

@@ -72,7 +72,7 @@ def main(cfg, args):
     folder_path = "/".join(sys.path[0].split("/")[:-1]) + "/"
     data_path = folder_path  + "data/" + args.input_data
 
-    result_path = folder_path  + "results"
+    result_path = folder_path  + args.output_path
     checkFolderPaths([result_path])
 
     default_setup(cfg, args)

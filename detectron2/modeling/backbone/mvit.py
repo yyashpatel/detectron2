@@ -74,6 +74,7 @@ class MultiScaleAttention(nn.Module):
 
         # qkv pooling
         pool_padding = [k // 2 for k in pool_kernel]
+
         dim_conv = dim_out // num_heads
         self.pool_q = nn.Conv2d(
             dim_conv,
@@ -129,13 +130,14 @@ class MultiScaleAttention(nn.Module):
         B, H, W, _ = x.shape
         # qkv with shape (3, B, nHead, H, W, C)
         qkv = self.qkv(x).reshape(B, H, W, 3, self.num_heads, -1).permute(3, 0, 4, 1, 2, 5)
+ 
         # q, k, v with shape (B * nHead, H, W, C)
         q, k, v = qkv.reshape(3, B * self.num_heads, H, W, -1).unbind(0)
-
+        # print(q.shape, k.shape, v.shape, 'before pooling')
         q = attention_pool(q, self.pool_q, self.norm_q)
         k = attention_pool(k, self.pool_k, self.norm_k)
         v = attention_pool(v, self.pool_v, self.norm_v)
-
+        # print(q.shape, k.shape, v.shape,'after pooling')
         ori_q = q
         if self.window_size:
             q, q_hw_pad = window_partition(q, self.q_win_size)
@@ -150,15 +152,16 @@ class MultiScaleAttention(nn.Module):
         q = q.view(q.shape[0], np.prod(q_hw), -1)
         k = k.view(k.shape[0], np.prod(kv_hw), -1)
         v = v.view(v.shape[0], np.prod(kv_hw), -1)
-
+   
         attn = (q * self.scale) @ k.transpose(-2, -1)
-
+        # print(attn.shape,'attn')
         if self.use_rel_pos:
             attn = add_decomposed_rel_pos(attn, q, self.rel_pos_h, self.rel_pos_w, q_hw, kv_hw)
 
         attn = attn.softmax(dim=-1)
+        # print(attn.shape,'attn softmax')
         x = attn @ v
-
+        # print(x.shape,'AV')
         x = x.view(x.shape[0], q_hw[0], q_hw[1], -1)
 
         if self.window_size:
@@ -170,7 +173,7 @@ class MultiScaleAttention(nn.Module):
         H, W = x.shape[1], x.shape[2]
         x = x.view(B, self.num_heads, H, W, -1).permute(0, 2, 3, 1, 4).reshape(B, H, W, -1)
         x = self.proj(x)
-
+        # print(x.shape,'final_attenyion otuput')
         return x
 
 
@@ -256,7 +259,6 @@ class MultiScaleBlock(nn.Module):
     def forward(self, x):
         x_norm = self.norm1(x)
         x_block = self.attn(x_norm)
-
         if hasattr(self, "proj"):
             x = self.proj(x_norm)
         if hasattr(self, "pool_skip"):
@@ -264,7 +266,6 @@ class MultiScaleBlock(nn.Module):
 
         x = x + self.drop_path(x_block)
         x = x + self.drop_path(self.mlp(self.norm2(x)))
-
         return x
 
 
@@ -430,7 +431,7 @@ class MViT(Backbone):
 
     def forward(self, x):
         x = self.patch_embed(x)
-
+        # print(x.shape, 'patch size')
         if self.pos_embed is not None:
             x = x + get_abs_pos(self.pos_embed, self.pretrain_use_cls_token, x.shape[1:3])
 
@@ -438,6 +439,7 @@ class MViT(Backbone):
         stage = 2
         for i, blk in enumerate(self.blocks):
             x = blk(x)
+            # print(x.shape,'block output')
             if i in self._last_block_indexes:
                 name = f"scale{stage}"
                 if name in self._out_features:
