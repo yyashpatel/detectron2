@@ -1,6 +1,4 @@
-# MViT ReadMe
-
-# Multi Scale Vision Transformer with cascade Mask-RCNN for Object Detection using Detectron2.
+# Multi Scale Vision Transformer with cascade Mask-RCNN for Object Detection using Detectron2:
 
 The code particularly uses MViT2 as a backbone. The features from the backbone are used by feature pyramid network for object detection. The code was executed using SBATCH file syntax. Source code is located in `src` directory of the repository.
 
@@ -26,11 +24,12 @@ execute the sbatch file on the terminal
 sbatch run.sbatch
 ```
 
-![pred_image_000005.jpg](MD/pred_image_000005.jpg)
+<div align="center">
+  <img src="MD/pred_image_000005.jpg" alt="Image 1">
+  <img src="MD/pred_image_000003.jpg" alt="Image 2">
+  <img src="MD/pred_image_000002.jpg" alt="Image 3">
+</div>
 
-![pred_image_000003.jpg](MD/pred_image_000003.jpg)
-
-![pred_image_000002.jpg](MD/pred_image_000002.jpg)
 
 ```
 @misc{wu2019detectron2,
