@@ -26,11 +26,11 @@ execute the sbatch file on the terminal
 sbatch run.sbatch
 ```
 
-![pred_image_000005.jpg](/detectron2/MD/pred_image_000005.jpg)
+![pred_image_000005.jpg](detectron2/MD/pred_image_000005.jpg)
 
-![pred_image_000003.jpg](/detectron2/MD/pred_image_000003.jpg)
+![pred_image_000003.jpg](detectron2/MD/pred_image_000003.jpg)
 
-![pred_image_000002.jpg](/detectron2/MD/pred_image_000002.jpg)
+![pred_image_000002.jpg](detectron2/MD/pred_image_000002.jpg)
 
 ```
 @misc{wu2019detectron2,
