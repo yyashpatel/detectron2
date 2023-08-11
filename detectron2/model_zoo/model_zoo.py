@@ -139,6 +139,7 @@ def get_config_file(config_path):
     cfg_file = pkg_resources.resource_filename(
         "detectron2.model_zoo", os.path.join("configs", config_path)
     )
+
     if not os.path.exists(cfg_file):
         raise RuntimeError("{} not available in Model Zoo!".format(config_path))
     return cfg_file
@@ -159,6 +160,7 @@ def get_config(config_path, trained: bool = False):
     Returns:
         CfgNode or omegaconf.DictConfig: a config object
     """
+
     cfg_file = get_config_file(config_path)
     if cfg_file.endswith(".yaml"):
         cfg = get_cfg()

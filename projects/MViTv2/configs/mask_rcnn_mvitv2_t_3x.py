@@ -10,6 +10,7 @@ from detectron2.modeling import MViT
 from .common.coco_loader import dataloader
 
 model = model_zoo.get_config("common/models/mask_rcnn_fpn.py").model
+
 constants = model_zoo.get_config("common/data/constants.py").constants
 model.pixel_mean = constants.imagenet_rgb256_mean
 model.pixel_std = constants.imagenet_rgb256_std
